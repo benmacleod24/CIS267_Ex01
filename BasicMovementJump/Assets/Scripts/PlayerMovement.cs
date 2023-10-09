@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject o_gameManager;
+    private GameManager gameManager;
+
     //gravity: 5
     private Rigidbody2D playerRigidBody;
     //8
@@ -26,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
         numJumps = 1;
         maxNumJumps = 1;
+
+        gameManager = o_gameManager.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -82,9 +87,9 @@ public class PlayerMovement : MonoBehaviour
 
         if(collision.gameObject.CompareTag("OB"))
         {
-            //need to import sceneManagement
-            SceneManager.LoadScene("SampleScene");
-        }
+            gameManager.setGameOver(true);
+            Debug.Log("Game Over")
+;        }
         else if(collision.gameObject.CompareTag("Grounded"))
         {
             numJumps = 1;

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
+    public GameManager gameManager;
+
     // Start Time
     private float levelDuration;
     private TMP_Text uiTime;
@@ -16,6 +18,8 @@ public class Timer : MonoBehaviour
     {
         levelDuration = 20;
         uiTime = GetComponent<TMP_Text>();
+
+        gameManager = gameObject.GetComponent<GameObject>().GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -31,7 +35,7 @@ public class Timer : MonoBehaviour
 
         if (isTimeExipred())
         {
-            SceneManager.LoadScene("SampleScene");
+            gameManager.setGameOver(true);
         }
     }
 
